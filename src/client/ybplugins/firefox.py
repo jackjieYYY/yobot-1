@@ -14,11 +14,8 @@ options = Options()
 options.headless = headless
 driver = webdriver.Firefox(options = options , executable_path=linux_executable_path)
 
-async def getscreenshot(url):
-    driver.get("https://www.baidu.com")
-    driver.save_screenshot("/root/qqbot/yobot/src/client/ybplugins/images/test.png")
+def getscreenshot(url):
     driver.get(url)
-    #driver.save_screenshot("./ybplugins/images/test1.png")
     driver.save_screenshot("/root/qqbot/yobot/src/client/ybplugins/images/test1.png")
 
 

@@ -10,6 +10,8 @@ from urllib.parse import urljoin
 
 import aiohttp
 
+import threading
+
 from .templating import render_template
 from .yobot_exceptions import ServerError
 
@@ -131,8 +133,9 @@ class Consult:
 
 
         #send the addr to firefox and open&save it
-        ybplugins.firefox.getscreenshot(addr)
-
+        ta = threading.Thread(target=ybplugins.firefox.getscreenshot,args=(addr,))
+        ta.start()
+        
         if self.setting['web_mode_hint']:
             reply += '\n\n如果无法打开，请仔细阅读教程中《链接无法打开》的说明'
         return reply
