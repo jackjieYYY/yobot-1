@@ -24,7 +24,7 @@ do
 done
 """.format('./yobot' if '_MEIPASS' in dir(sys) else 'python3 main.py'))
         print('请通过"sh yobotg.sh"启动')
-        sys.exit()
+        #sys.exit()
     if os.path.exists('.YOBOT_RESTART'):
         os.remove('.YOBOT_RESTART')
 
@@ -35,7 +35,7 @@ import time
 import tzlocal
 from aiocqhttp import CQHttp
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
+import ybplugins.firefox
 import yobot
 
 
@@ -138,4 +138,5 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         print("\nCtrl-C")
+        ybplugins.firefox.driver.quit()
         sys.exit(0)

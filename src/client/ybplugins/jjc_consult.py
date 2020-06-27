@@ -3,6 +3,7 @@ import json
 import os
 import random
 import time
+import ybplugins.firefox
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import urljoin
@@ -127,6 +128,11 @@ class Consult:
             '{}output/{}'.format(
                 self.setting['public_basepath'], filename))
         reply = '找到{}条解法：{}'.format(len(result), addr)
+
+
+        #send the addr to firefox and open&save it
+        ybplugins.firefox.getscreenshot(addr)
+
         if self.setting['web_mode_hint']:
             reply += '\n\n如果无法打开，请仔细阅读教程中《链接无法打开》的说明'
         return reply
